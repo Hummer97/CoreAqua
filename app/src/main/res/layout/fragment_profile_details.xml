@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.ProfileDetails.ProfileDetailsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout12"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:background="@drawable/topimg"
+        android:backgroundTint="@color/sky_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout13"
+        android:layout_width="match_parent"
+        android:layout_height="215dp"
+        android:background="@drawable/topimg"
+        android:backgroundTint="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:shadowColor="@color/black"
+            android:shadowDx="3"
+            android:shadowDy="4"
+            android:shadowRadius="5"
+            android:text="Edit Proflie"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.41000003" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout12">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_details_body_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="80dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/desh_bg"
+                    android:padding="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/amaranth"
+                        android:text="Edit User Details"
+                        android:textColor="@color/blue"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/editTextTextPersonName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/border_bg"
+                        android:backgroundTint="@color/sky_blue"
+                        android:hint="Name"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/edit_text_color_hint"
+                        android:textColorHint="@color/edit_text_color_hint"
+                        android:maxLines="1"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="10dp"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider4" />
+
+                    <EditText
+                        android:id="@+id/editTextTextPersonName2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/border_bg"
+                        android:backgroundTint="@color/sky_blue"
+                        android:hint="Mobile No"
+                        android:textColor="@color/edit_text_color_hint"
+                        android:textColorHint="@color/edit_text_color_hint"
+                        android:inputType="textPersonName"
+                        android:maxLines="1"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="10dp"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
+                        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
+                        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
+                    <EditText
+                        android:id="@+id/editTextTextPersonName3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/border_bg"
+                        android:backgroundTint="@color/sky_blue"
+                        android:clickable="false"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:hint="Email Id"
+                        android:textColor="@color/edit_text_color_hint"
+                        android:textColorHint="@color/edit_text_color_hint"
+                        android:inputType="textPersonName"
+                        android:maxLines="1"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="10dp"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName2"
+                        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName2"
+                        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+
+                    <Button
+                        android:id="@+id/button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Update User Details"
+                        android:textColor="@color/white"
+                        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName3"
+                        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"
+                        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+
+                    <View
+                        android:id="@+id/divider4"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:background="?android:attr/listDivider"
+                        app:layout_constraintEnd_toEndOf="@+id/textView13"
+                        app:layout_constraintStart_toStartOf="@+id/textView13"
+                        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/desh_bg"
+                    android:padding="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout14">
+
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/amaranth"
+                        android:text="Chnage Password"
+                        android:textColor="@color/blue"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/divider8"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:background="?android:attr/listDivider"
+                        app:layout_constraintEnd_toEndOf="@+id/textView14"
+                        app:layout_constraintStart_toStartOf="@+id/textView14"
+                        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+                    <EditText
+                        android:id="@+id/profile_details_old_password"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rectangle_bg"
+                        android:backgroundTint="@color/sky_blue"
+                        android:hint="Old Password"
+                        android:inputType="textPersonName"
+                        android:textColor="@color/edit_text_color_hint"
+                        android:textColorHint="@color/edit_text_color_hint"
+                        android:maxLines="1"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="10dp"
+                        android:textSize="14sp"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="@+id/divider8"
+                        app:layout_constraintStart_toStartOf="@+id/divider8"
+                        app:layout_constraintTop_toBottomOf="@+id/profile_details_change_password_checkBox" />
+
+                    <EditText
+                        android:id="@+id/profile_details_new_password"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/rectangle_bg"
+                        android:backgroundTint="@color/sky_blue"
+                        android:hint="New Password"
+                        android:inputType="textPersonName"
+                        android:maxLines="1"
+                        android:textColor="@color/edit_text_color_hint"
+                        android:textColorHint="@color/edit_text_color_hint"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="10dp"
+                        android:textSize="14sp"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="@+id/profile_details_old_password"
+                        app:layout_constraintStart_toStartOf="@+id/profile_details_old_password"
+                        app:layout_constraintTop_toBottomOf="@+id/profile_details_old_password" />
+
+                    <EditText
+                        android:id="@+id/profile_details_confirm_password"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/rectangle_bg"
+                        android:backgroundTint="@color/sky_blue"
+                        android:hint="Confirm Password"
+                        android:inputType="textPersonName"
+                        android:maxLines="1"
+                        android:textColor="@color/edit_text_color_hint"
+                        android:textColorHint="@color/edit_text_color_hint"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="10dp"
+                        android:textSize="14sp"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="@+id/profile_details_new_password"
+                        app:layout_constraintStart_toStartOf="@+id/profile_details_new_password"
+                        app:layout_constraintTop_toBottomOf="@+id/profile_details_new_password" />
+
+                    <Button
+                        android:id="@+id/profile_details_update_password_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Update Password"
+                        android:textColor="@color/white"
+                        android:textAllCaps="false"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="@+id/profile_details_confirm_password"
+                        app:layout_constraintStart_toStartOf="@+id/profile_details_confirm_password"
+                        app:layout_constraintTop_toBottomOf="@+id/profile_details_confirm_password" />
+
+                    <CheckBox
+                        android:id="@+id/profile_details_change_password_checkBox"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Are you want to change password ?"
+                        app:layout_constraintEnd_toEndOf="@+id/divider8"
+                        app:layout_constraintStart_toStartOf="@+id/divider8"
+                        app:layout_constraintTop_toBottomOf="@+id/divider8" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.Profile.ProfileFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="245dp"
+        android:background="@drawable/topimg"
+        android:backgroundTint="@color/sky_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:background="@drawable/topimg"
+        android:backgroundTint="@color/blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profile_wallet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/border_bg_white"
+            android:paddingHorizontal="7dp"
+            android:paddingVertical="3dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_account_balance_wallet_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/profile_wallet_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Rs. 0"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageButton"
+                app:layout_constraintStart_toEndOf="@+id/imageButton"
+                app:layout_constraintTop_toTopOf="@+id/imageButton" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:fontFamily="@font/amaranth"
+            android:text="Profile"
+            android:padding="10dp"
+            android:shadowColor="@color/black"
+            android:shadowDy="5"
+            android:shadowRadius="4"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.45" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageView7"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/avatar"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.82"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+        app:shapeAppearanceOverlay="@style/Circular" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_photo_camera_24"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+        app:layout_constraintEnd_toEndOf="@+id/imageView7"
+        app:layout_constraintTop_toTopOf="@+id/imageView7"
+        app:layout_constraintVertical_bias="0.90999997"
+        app:tint="#AEAEAE" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/profile_edit_profile_btn"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="32dp"-->
+<!--        android:layout_marginTop="32dp"-->
+<!--        android:layout_marginEnd="32dp"-->
+<!--        android:background="@drawable/rectangle_bg"-->
+<!--        android:backgroundTint="@color/sky_blue"-->
+<!--        android:drawableLeft="@drawable/ic_baseline_person_24"-->
+<!--        android:drawablePadding="10dp"-->
+<!--        -->
+<!--        android:paddingHorizontal="10dp"-->
+<!--        android:paddingVertical="10dp"-->
+<!--        android:text="User Name"-->
+<!--        android:visibility="gone"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/imageView7" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/profile_wallet_history_btn"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:background="@drawable/rectangle_bg"-->
+<!--        android:backgroundTint="@color/sky_blue"-->
+<!--        android:drawableLeft="@drawable/ic_baseline_phone_iphone_24"-->
+<!--        android:drawablePadding="10dp"-->
+<!--        -->
+<!--        android:paddingHorizontal="10dp"-->
+<!--        android:paddingVertical="10dp"-->
+<!--        android:text="9876765633"-->
+<!--        android:visibility="gone"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/profile_edit_profile_btn"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/profile_edit_profile_btn"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/profile_edit_profile_btn" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/profile_profile_add_balance_btn"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:background="@drawable/rectangle_bg"-->
+<!--        android:backgroundTint="@color/sky_blue"-->
+<!--        android:drawableLeft="@drawable/ic_baseline_mail_24"-->
+<!--        android:drawablePadding="10dp"-->
+<!--        -->
+<!--        android:paddingHorizontal="10dp"-->
+<!--        android:paddingVertical="10dp"-->
+<!--        android:text="username12@gmail.com"-->
+<!--        android:visibility="gone"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/profile_wallet_history_btn"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/profile_wallet_history_btn"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/profile_wallet_history_btn" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView14"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:background="@drawable/rectangle_bg"-->
+<!--        android:backgroundTint="@color/sky_blue"-->
+<!--        android:drawableLeft="@drawable/ic_baseline_location_on_24"-->
+<!--        android:drawablePadding="10dp"-->
+<!--        -->
+<!--        android:paddingHorizontal="10dp"-->
+<!--        android:paddingVertical="10dp"-->
+<!--        android:text="Alpha 1, Greater Noida, Uttar Pradesh- 201312"-->
+<!--        android:visibility="gone"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/profile_profile_add_balance_btn"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/profile_profile_add_balance_btn"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/profile_profile_add_balance_btn" />-->
+
+    <TextView
+        android:id="@+id/profile_edit_profile_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+        android:background="@drawable/textbottomline"
+        android:drawablePadding="10dp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp"
+        android:text="Edit Profile"
+        android:gravity="center_vertical"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/divider7"
+        app:layout_constraintStart_toStartOf="@+id/divider7"
+        app:layout_constraintTop_toBottomOf="@+id/divider7" />
+
+    <TextView
+        android:id="@+id/profile_wallet_history_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+        android:drawablePadding="10dp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp"
+        android:text="Wallet History"
+
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@+id/profile_edit_profile_btn"
+        app:layout_constraintStart_toStartOf="@+id/profile_edit_profile_btn"
+        app:layout_constraintTop_toBottomOf="@+id/profile_edit_profile_btn" />
+
+    <TextView
+        android:id="@+id/profile_profile_add_balance_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+        android:drawablePadding="10dp"
+        android:background="@drawable/textbottomline"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp"
+        android:text="Add Balance"
+        android:visibility="gone"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/profile_wallet_history_btn"
+        app:layout_constraintStart_toStartOf="@+id/profile_wallet_history_btn"
+        app:layout_constraintTop_toBottomOf="@+id/profile_wallet_history_btn" />
+
+    <TextView
+        android:id="@+id/profile_sign_out_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp"
+        android:text="Sign Out"
+        android:textStyle="bold"
+
+        app:layout_constraintEnd_toEndOf="@+id/profile_my_order"
+        app:layout_constraintStart_toStartOf="@+id/profile_my_order"
+        app:layout_constraintTop_toBottomOf="@+id/profile_my_order" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/amiko"
+        android:text="Welcome back ,"
+        android:textAlignment="viewStart"
+
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
+
+    <TextView
+        android:id="@+id/profile_user_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/amaranth"
+        android:text="User Name"
+        android:textAlignment="viewStart"
+        android:textColor="@color/blue"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <View
+        android:id="@+id/divider7"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="@+id/profile_user_name"
+        app:layout_constraintStart_toStartOf="@+id/profile_user_name"
+        app:layout_constraintTop_toBottomOf="@+id/profile_user_name" />
+
+    <TextView
+        android:id="@+id/profile_my_order"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp"
+        android:text="My Orders"
+        android:background="@drawable/textbottomline"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/profile_wallet_history_btn"
+        app:layout_constraintStart_toStartOf="@+id/profile_wallet_history_btn"
+        app:layout_constraintTop_toTopOf="@+id/profile_profile_add_balance_btn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

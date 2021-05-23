@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_product_list_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/rectangle_bg"
+    android:elevation="10dp">
+
+        <ImageView
+            android:id="@+id/item_product_list_img"
+            android:layout_width="60dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/water_bottle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/item_product_list_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CAQW001"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/textPrimaryColor"
+            app:layout_constraintBottom_toTopOf="@+id/item_product_list_qty"
+            app:layout_constraintStart_toStartOf="@+id/item_product_list_title"
+            app:layout_constraintTop_toBottomOf="@+id/item_product_list_title" />
+
+        <TextView
+            android:id="@+id/item_product_list_qty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20 Liters"
+            android:textSize="12sp"
+            android:textColor="@color/textPrimaryColor"
+            app:layout_constraintStart_toStartOf="@+id/item_product_list_code"
+            app:layout_constraintTop_toBottomOf="@+id/item_product_list_code" />
+
+        <TextView
+            android:id="@+id/item_product_list_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="Rs. 25"
+            android:textColor="@color/textPrimaryColor"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/item_product_list_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/item_product_list_img" />
+
+        <TextView
+            android:id="@+id/item_product_list_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Title"
+            android:textColor="@color/textPrimaryColor"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/item_product_list_code"
+            app:layout_constraintStart_toEndOf="@+id/item_product_list_img"
+            app:layout_constraintTop_toTopOf="@+id/item_product_list_img"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/deshboard_qty_min"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginEnd="4dp"-->
+        <!--            android:background="@drawable/btn_rect_bg_without_color"-->
+        <!--            android:gravity="center"-->
+        <!--            android:paddingHorizontal="10dp"-->
+        <!--            android:paddingVertical="3dp"-->
+        <!--            android:text="-"-->
+        <!--            android:textStyle="bold"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@+id/item_product_list_img"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/deshboard_qty_count"-->
+        <!--            app:layout_constraintHorizontal_bias="1.0"-->
+        <!--            app:layout_constraintHorizontal_chainStyle="packed"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/item_product_list_qty"-->
+        <!--            app:layout_constraintTop_toTopOf="@+id/item_product_list_img" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/deshboard_qty_count"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="4dp"-->
+        <!--            android:layout_marginEnd="4dp"-->
+        <!--            android:text="1"-->
+        <!--            android:textSize="20sp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@+id/deshboard_qty_min"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/deshboard_qty_max"-->
+        <!--            app:layout_constraintHorizontal_bias="0.5"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/deshboard_qty_min"-->
+        <!--            app:layout_constraintTop_toTopOf="@+id/deshboard_qty_min" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/deshboard_qty_max"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="4dp"-->
+        <!--            android:layout_marginEnd="24dp"-->
+        <!--            android:background="@drawable/btn_rect_bg_without_color"-->
+        <!--            android:gravity="center"-->
+        <!--            android:paddingHorizontal="10dp"-->
+        <!--            android:paddingVertical="3dp"-->
+        <!--            android:text="+"-->
+        <!--            android:textStyle="bold"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@+id/deshboard_qty_count"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintHorizontal_bias="0.5"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/deshboard_qty_count"-->
+        <!--            app:layout_constraintTop_toTopOf="@+id/deshboard_qty_count" />-->
+</androidx.constraintlayout.widget.ConstraintLayout>

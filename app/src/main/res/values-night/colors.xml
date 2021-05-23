@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="status_color_red">#EF9A9A</color>
+    <color name="status_text_red">#D32F2F</color>
+    <color name="status_color_green">#C8E6C9</color>
+    <color name="status_text_color_green">#388E3C</color>
+    <color name="status_color_yellow">#FFF9C4</color>
+    <color name="status_text_color_yellow">#FBC02D</color>
+    <color name="textPrimaryColor">@color/black</color>
+    <color name="sky_blue">#BBDEFB</color>
+    <color name="blue">#0277BD</color>
+    <color name="textSecondaryColor">#FFFFFF</color>
+    <color name="transparent">#007A4C49</color>
+    <color name="gradient_start_color">#0277BD</color>
+    <color name="edit_text_color_hint">#6A6A6A</color>
+    <color name="editText_text_color">#0288D1</color>
+</resources>

@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">CoreAqua</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_navi">NaviActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="title_activity_main2">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_Plan">My Subscription</string>
+    <string name="title_Profile">Profile</string>
+    <string name="title_Contact">Contact</string>
+
+
+    <!--  Wallet String   -->
+    <string name="pay">Add \u20B9 </string>
+    <string name="Rs">\u20B9</string>
+    <!--  Wallet String   -->
+
+
+    <!---Privacy Policy Layout String-->
+    <string name="privacy_policy_contact_us_data">If you have questions or comments about this Privacy Policy, please contact us at: \n <b>Core Aqua \n Greater Noida, Uttar Pradesh \n +917865625345</b> \n</string>
+    <string name="privacy_policy_account_information">You may at any time review or change the information in your account or terminate your account by: \n\n
+                <ol>
+                    <li>Logging into your account settings and updating your account</li>\n
+                    <li>Contacting us using the contact information provided below</li>
+                </ol>\n\n
+        Upon your request to terminate your account, we will deactivate or delete your account and information from our active databases. However, some information may be retained in our files to prevent fraud, troubleshoot problems, assist with any investigations, enforce our Terms of Use and/or comply with legal requirements.
+    </string>
+    <string name="privacy_policy_core_aqua_policy">We respects the privacy of our users. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our mobile application. Please read this Privacy Policy carefully. IF YOU DO NOT AGREE WITH THE TERMS OF THIS PRIVACY POLICY, PLEASE DO NOT ACCESS THE APPLICATION.</string>
+    <string name="privacy_policy_personal_info">We reserve the right to make changes to this Privacy Policy at any time and for any reason. We will alert you about any changes by updating the “Last updated” date of this Privacy Policy. You are encouraged to periodically review this Privacy Policy to stay informed of updates. You will be deemed to have been made aware of, will be subject to, and will be deemed to have accepted the changes in any revised Privacy Policy by your continued use of the Application after the date such revised Privacy Policy is posted.\n\n
+        This Privacy Policy does not apply to the third-party online/mobile store from which you install the Application or make payments, including any in-game virtual items, which may also collect and use data about you. We are not responsible for any of the data collected by any such third party.
+    </string>
+    <string name="privacy_policy_collection_of_info">We may collect information about you in a variety of ways. The information we may collect via the Application depends on the content and materials you use, and includes:</string>
+    <string name="privacy_policy_personal_data">Demographic and other personally identifiable information (such as your name and email address) that you voluntarily give to us when choosing to participate in various activities related to the Application, such as chat, posting messages in comment sections or in our forums, liking posts, sending feedback, and responding to surveys. If you choose to share data about yourself via your profile, online chat, or other interactive areas of the Application, please be advised that all data you disclose in these areas is public and your data will be accessible to anyone who accesses the Application.</string>
+    <string name="privacy_policy_geo_location">We may request access or permission to and track location-based information from your mobile device, either continuously or while you are using the Application, to provide location-based services. If you wish to change our access or permissions, you may do so in your device’s settings.</string>
+    <string name="privacy_policy_for_child">We do not knowingly solicit information from or market to children under the age of 13. If you become aware of any data we have collected from children under age 13, please contact us using the contact information provided below.</string>
+    <string name="privacy_policy_california_rights">California Civil Code Section 1798.83, also known as the “Shine The Light” law, permits our users who are California residents to request and obtain from us, once a year and free of charge, information about categories of personal information (if any) we disclosed to third parties for direct marketing purposes and the names and addresses of all third parties with which we shared personal information in the immediately preceding calendar year. If you are a California resident and would like to make such a request, please submit your request in writing to us using the contact information provided below. \n\n If you are under 18 years of age, reside in California, and have a registered account with the Application, you have the right to request removal of unwanted data that you publicly post on the Application. To request removal of such data, please contact us using the contact information provided below, and include the email address associated with your account and a statement that you reside in California. We will make sure the data is not publicly displayed on the Application, but please be aware that the data may not be completely or comprehensively removed from our systems.</string>
+    <string-array name="status">
+        <item>Confirmed</item>
+        <item>Dispatched</item>
+        <item>Arrived</item>
+        <item>Delivered</item>
+        <item>Reviewed</item>
+    </string-array>
+</resources>

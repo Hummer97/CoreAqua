@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/orderDetailsFragment">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.xpertwebtech.coreaqua.ui.DashBoard.DeshboardFragment"
+        android:label="fragment_deshboard"
+        tools:layout="@layout/fragment_deshboard" />
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="com.xpertwebtech.coreaqua.ui.ui.slideshow.SlideshowFragment"
+        android:label="fragment_slideshow"
+        tools:layout="@layout/fragment_slideshow" >
+        <action
+            android:id="@+id/action_nav_slideshow_to_privacyPolicyFragment"
+            app:destination="@id/privacyPolicyFragment" />
+        <action
+            android:id="@+id/action_nav_slideshow_to_referEranFragment"
+            app:destination="@id/referEranFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_plan"
+        android:name="com.xpertwebtech.coreaqua.ui.My_Plan.MyPlanFragment"
+        android:label="fragment_my_plan"
+        tools:layout="@layout/fragment_my_plan" />
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.xpertwebtech.coreaqua.ui.Profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_nav_profile_to_walletHistoryFragment3"
+            app:destination="@id/walletHistoryFragment3" />
+        <action
+            android:id="@+id/action_nav_profile_to_profileDetailsFragment"
+            app:destination="@id/profileDetailsFragment" />
+        <action
+            android:id="@+id/action_nav_profile_to_orderListFragment"
+            app:destination="@id/orderListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderDetailsFragment"
+        android:name="com.xpertwebtech.coreaqua.ui.ProductDetails.ProductDetailsFragment"
+        android:label="fragment_order_details"
+        tools:layout="@layout/fragment_product_details" >
+        <action
+            android:id="@+id/action_orderDetailsFragment_to_addressListFragment"
+            app:destination="@id/addressListFragment" />
+        <action
+            android:id="@+id/action_orderDetailsFragment_to_walletHistoryFragment3"
+            app:destination="@id/walletHistoryFragment3" />
+    </fragment>
+    <fragment
+        android:id="@+id/privacyPolicyFragment"
+        android:name="com.xpertwebtech.coreaqua.ui.PrivacyPolicy.PrivacyPolicyFragment"
+        android:label="fragment_privacy_policy"
+        tools:layout="@layout/fragment_privacy_policy" />
+    <fragment
+        android:id="@+id/referEranFragment"
+        android:name="com.xpertwebtech.coreaqua.ui.Refer_Earn.ReferEranFragment"
+        android:label="fragment_refer_eran"
+        tools:layout="@layout/fragment_refer_eran" />
+    <fragment
+        android:id="@+id/walletFragment"
+        android:name="com.xpertwebtech.coreaqua.ui.Wallet.WalletFragment"
+        android:label="fragment_wallet"
+        tools:layout="@layout/fragment_wallet" />
+    <fragment
+        android:id="@+id/walletHistoryFragment3"
+        android:name="com.xpertwebtech.coreaqua.ui.WalletHistory.WalletHistoryFragment"
+        android:label="fragment_wallet_history"
+        tools:layout="@layout/fragment_wallet_history" />
+    <fragment
+        android:id="@+id/profileDetailsFragment"
+        android:name="com.xpertwebtech.coreaqua.ui.ProfileDetails.ProfileDetailsFragment"
+        android:label="fragment_profile_details"
+        tools:layout="@layout/fragment_profile_details" />
+    <fragment
+        android:id="@+id/orderListFragment"
+        android:name="com.xpertwebtech.coreaqua.ui.MyOrders.OrderListFragment"
+        android:label="fragment_order_list"
+        tools:layout="@layout/fragment_order_list" >
+        <action
+            android:id="@+id/action_orderListFragment_to_myOrderDetailsFragment"
+            app:destination="@id/myOrderDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myOrderDetailsFragment"
+        android:name="com.xpertwebtech.coreaqua.ui.MyOrderDetails.MyOrderDetailsFragment"
+        android:label="fragment_my_order_details"
+        tools:layout="@layout/fragment_my_order_details" />
+    <fragment
+        android:id="@+id/addressListFragment"
+        android:name="com.xpertwebtech.coreaqua.ui.AddressList.AddressListFragment"
+        android:label="fragment_address_list"
+        tools:layout="@layout/fragment_address_list" />
+</navigation>
