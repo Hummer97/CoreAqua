@@ -2,7 +2,9 @@ package com.xpertwebtech.coreaqua.ui.ProductDetails
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.pm.PackageManager
 import android.icu.util.Calendar
+import android.location.Geocoder
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -10,9 +12,11 @@ import android.view.View
 import android.widget.Button
 import android.widget.RadioButton
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
 import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import com.bumptech.glide.Glide
+import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.xpertwebtech.coreaqua.Interface.RecyclerViewClickInterface
@@ -26,8 +30,11 @@ import kotlinx.android.synthetic.main.fragment_deshboard.*
 import kotlinx.android.synthetic.main.fragment_product_details.*
 import kotlinx.android.synthetic.main.select_location_popup.view.*
 import kotlinx.android.synthetic.main.term_condition_popup.view.*
+import java.util.*
 
 class ProductDetailsFragment : BaseFragment<ProductDetailsView, ProductDetailsPresenter>(),ProductDetailsView {
+    private lateinit var geocoder: Geocoder
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var selected_Address: String
     private lateinit var mDialog: AlertDialog
     private lateinit var mDialog2: AlertDialog
@@ -221,6 +228,11 @@ class ProductDetailsFragment : BaseFragment<ProductDetailsView, ProductDetailsPr
             setProductDetalis()
         }
     }
+
+    override fun getGeoLocationResponse(response: GeoLocationData) {
+        Log.d("Geo Check", response.location.toString())
+    }
+
     private fun isValidationChecked(userType: String, start_date: String, end_date: String): Boolean {
         when {
             userType.equals("null") -> {
@@ -356,6 +368,7 @@ class ProductDetailsFragment : BaseFragment<ProductDetailsView, ProductDetailsPr
             Log.d("selected_Address",selected_Address)
             if (selected_Address.equals("Current Address"))
             {
+                presenter!!.hitGeoLocationApi("AIzaSyB3h-DQ2T_YnsMo7pIMtjRv42tsxlaAY-o")
                 Snackbar.make(popupView.select_location_radioGroup,"Current Address Selected",Snackbar.LENGTH_LONG).show()
             }
             else if (selected_Address.equals("Saved Address"))
@@ -389,6 +402,64 @@ class ProductDetailsFragment : BaseFragment<ProductDetailsView, ProductDetailsPr
 
         popupView.tc_cancel.setOnClickListener {
             mDialog2.dismiss()
+        }
+    }
+    private fun getUserAddress(latitude: Double, longitude: Double) {
+
+        val addresses: List<android.location.Address>
+        geocoder = Geocoder(requireContext(), Locale.getDefault())
+
+        addresses = geocoder.getFromLocation(latitude, longitude, 1) // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+
+
+        val address: String = addresses[0].getAddressLine(0) // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+
+        if(addresses[0]?.getSubLocality()!=null)
+        {
+            val socity:String = addresses[0]?.getSubLocality()
+            deshboard_location_subleclity.text = socity
+        }
+        if(addresses[0]?.getFeatureName()!=null)
+        {
+            val knownName: String = addresses[0]?.getFeatureName()
+            var trimData:String = knownName+", "
+            val separated: List<String> = address.split(trimData)
+            var demoAddress:String = separated[1];
+            deshboard_location_full_address.text = demoAddress
+        }
+//        v
+
+//        Log.d("location", address)
+//        Log.d("location", socity)
+//        Log.d("location", city)
+//        Log.d("location", state)
+//        Log.d("location", country)
+//        Log.d("location", postalCode)
+//        Log.d("location", knownName)
+
+
+
+
+
+    }
+    private fun checkLocationPermission() {
+        val task = fusedLocationProviderClient.lastLocation
+        if(ActivityCompat.checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED && ActivityCompat
+                .checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED){
+
+            ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 101)
+            return
+        }
+        task.addOnSuccessListener {
+            if (it != null)
+            {
+//                Snackbar.make(dashboard_rc, "${it.latitude} ${it.longitude}", Snackbar.LENGTH_LONG).show()
+                Log.d("location", "${it.latitude} ${it.longitude}")
+                getUserAddress(it.latitude, it.longitude)
+
+            }
         }
     }
 }

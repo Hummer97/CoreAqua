@@ -1,9 +1,11 @@
 package com.rns.rnsecomapp.api
 
 import com.xpertwebtech.coreaqua.api.ApiService
+import com.xpertwebtech.coreaqua.api.MapApiClient
 import com.xpertwebtech.coreaqua.dataModel.UserDataClass
 import com.xpertwebtech.coreaqua.ui.DashBoard.ProductListData
 import com.xpertwebtech.coreaqua.ui.My_Plan.UserPlanData
+import com.xpertwebtech.coreaqua.ui.ProductDetails.GeoLocationData
 import com.xpertwebtech.coreaqua.ui.ProductDetails.ProductDetailsResponseData
 import com.xpertwebtech.coreaqua.ui.Signup.*
 import com.xpertwebtech.coreaqua.ui.Wallet.WalletListData
@@ -12,6 +14,7 @@ import io.reactivex.Observable
 class WebServiceRequests {
     companion object {
         private var apiService: ApiService? = null
+        private var mapApiService: ApiService? = null
         val instance = WebServiceRequests()
     }
 
@@ -20,6 +23,7 @@ class WebServiceRequests {
     init {
         if (apiService == null) {
             apiService = ApiClient.getClient()!!.create(ApiService::class.java)
+            mapApiService = MapApiClient.getClient()!!.create(ApiService::class.java)
         }
     }
 
@@ -91,5 +95,10 @@ class WebServiceRequests {
         params["start_date"] = start_date
         params["end_date"] = end_date
         return apiService!!.userSelectPlan(params)
+    }
+
+    fun getGeoLocation(key:String):Observable<GeoLocationData>
+    {
+        return mapApiService!!.getGeoLocation(key)
     }
 }

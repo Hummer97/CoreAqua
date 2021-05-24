@@ -9,4 +9,5 @@ interface ProductDetailsView:BaseView {
     fun getWalletBalanceResponse(response: WalletListData)
     fun getOrderSelectedPlanResponse(response: ProductDetailsResponseData)
     fun getProductListResponse(response: ProductListData)
+    fun getGeoLocationResponse(response:GeoLocationData)
 }

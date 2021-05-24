@@ -4,6 +4,7 @@ class Constants {
     companion object {
         var DeviceName =""
         const val BASE_URL = "https://expertwebtech.com/water_aqua/public/"
+        const val MAP_BASE_URL = "https://www.googleapis.com/"
         var DeviceId: String = ""
         var HEADER_TOKEN = "Basic AR-AUG-ARST-BIZBR-2019OLLY"
         const val LOCATION_REQUEST = 1000
@@ -22,8 +23,8 @@ class Constants {
      const val Product_List = "api/product"
      const val User_plan_list = "api/user-plan-listing"
      const val Wallet_history = "api/user-wallet-history-list"
-     const val User_select_order =
-             "api/user-select-order"
+     const val User_select_order ="api/user-select-order"
+     const val key = "geolocation/v1/geolocate"
 
  }
 

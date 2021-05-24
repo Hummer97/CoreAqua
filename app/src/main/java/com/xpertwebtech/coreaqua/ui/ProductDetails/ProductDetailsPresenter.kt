@@ -20,6 +20,18 @@ class ProductDetailsPresenter(view:ProductDetailsFragment):BasePresenter<Product
     override fun onViewReady() {
 
     }
+    fun hitGeoLocationApi(key:String)
+    {
+        WebServiceRequests.instance.getGeoLocation(key).subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : ApiObserver<GeoLocationData>("",getView()){
+                override fun onResponse(t: GeoLocationData) {
+                    getView().getGeoLocationResponse(t)
+                }
+
+            })
+    }
+
     fun hitGetProductListApi()
     {
         WebServiceRequests.instance.getProductList().subscribeOn(Schedulers.io())

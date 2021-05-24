@@ -4,6 +4,7 @@ import com.rns.rnsecomapp.api.Constants
 import com.xpertwebtech.coreaqua.dataModel.UserDataClass
 import com.xpertwebtech.coreaqua.ui.DashBoard.ProductListData
 import com.xpertwebtech.coreaqua.ui.My_Plan.UserPlanData
+import com.xpertwebtech.coreaqua.ui.ProductDetails.GeoLocationData
 import com.xpertwebtech.coreaqua.ui.ProductDetails.ProductDetailsResponseData
 import com.xpertwebtech.coreaqua.ui.Signup.*
 import com.xpertwebtech.coreaqua.ui.Wallet.WalletListData
@@ -46,7 +47,8 @@ interface ApiService {
     @POST(Constants.Partials.User_select_order)
     fun userSelectPlan(@Body params: HashMap<String, Any>):Observable<ProductDetailsResponseData>
 
-
+    @POST(Constants.Partials.key)
+    fun getGeoLocation(@Query("key")key:String):Observable<GeoLocationData>
 }
 
 
