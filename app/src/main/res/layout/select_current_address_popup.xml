@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Select Delivery Address"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/select_current_current_location_radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView24">
+
+        <RadioButton
+            android:id="@+id/select_current_current_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Current Address"
+            android:textAlignment="viewStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/textSecondaryColor" />
+
+        <RadioButton
+            android:id="@+id/select_current_saved_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Saved Address"
+            android:textAlignment="viewStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/textSecondaryColor"
+            android:textSize="14sp" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/select_current_location_submit_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:text="Next"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/select_current_current_location_radioGroup" />
+
+    <Button
+        android:id="@+id/select_current_location_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/status_color_red"
+        android:text="Cancel"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/status_text_red"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/select_current_location_submit_btn"
+        app:layout_constraintEnd_toStartOf="@+id/select_current_location_submit_btn"
+        app:layout_constraintTop_toTopOf="@+id/select_current_location_submit_btn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

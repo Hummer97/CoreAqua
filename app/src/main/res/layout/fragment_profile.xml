@@ -244,9 +244,9 @@
         android:text="Sign Out"
         android:textStyle="bold"
 
-        app:layout_constraintEnd_toEndOf="@+id/profile_my_order"
-        app:layout_constraintStart_toStartOf="@+id/profile_my_order"
-        app:layout_constraintTop_toBottomOf="@+id/profile_my_order" />
+        app:layout_constraintEnd_toEndOf="@+id/profile_save_address"
+        app:layout_constraintStart_toStartOf="@+id/profile_save_address"
+        app:layout_constraintTop_toBottomOf="@+id/profile_save_address" />
 
     <TextView
         android:id="@+id/textView2"
@@ -289,16 +289,16 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_user_name" />
 
     <TextView
-        android:id="@+id/profile_my_order"
+        android:id="@+id/profile_save_address"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/textbottomline"
         android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
         android:drawablePadding="10dp"
         android:gravity="center_vertical"
         android:paddingHorizontal="10dp"
         android:paddingVertical="10dp"
-        android:text="My Orders"
-        android:background="@drawable/textbottomline"
+        android:text="Saved Address"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/profile_wallet_history_btn"
         app:layout_constraintStart_toStartOf="@+id/profile_wallet_history_btn"

@@ -2,12 +2,24 @@ package com.xpertwebtech.coreaqua.ui.MyOrderDetails
 
 import android.os.Bundle
 import androidx.core.content.ContextCompat
+import androidx.navigation.NavController
 import com.xpertwebtech.coreaqua.R
 import com.xpertwebtech.coreaqua.base.BaseFragment
+import com.xpertwebtech.coreaqua.ui.AddressList.AddressListFragmentArgs
 import kotlinx.android.synthetic.main.fragment_my_order_details.*
 
 
 class MyOrderDetailsFragment : BaseFragment<MyOrderDetailsView, MyOrderDetailsPresenter>(),MyOrderDetailsView {
+
+    private lateinit var mUserName:String
+    private lateinit var mPhone:String
+    private lateinit var mEmail:String
+    private lateinit var mAddress:String
+    private lateinit var mTotal_amount:String
+    private lateinit var mQty:String
+    private lateinit var mPayment_mode:String
+    private lateinit var mTransationID:String
+    private lateinit var mOrder_Status:String
     override fun getContentView(): Int {
         return R.layout.fragment_my_order_details
     }
@@ -17,57 +29,31 @@ class MyOrderDetailsFragment : BaseFragment<MyOrderDetailsView, MyOrderDetailsPr
     }
 
     override fun onViewReady(savedInstanceState: Bundle?) {
-        val list0: MutableList<String> = ArrayList()
-        list0.add("Order Confirm")
-        list0.add("Dispatch")
-        list0.add("Delivered")
-        mSetpview0.setStepsViewIndicatorComplectingPosition(list0.size - 2) //设置完成的步数
-            .reverseDraw(false) //default is true
-            .setStepViewTexts(list0) //总步骤
-            .setLinePaddingProportion(0.85f) //设置indicator线与线间距的比例系数
-            .setStepsViewIndicatorCompletedLineColor(
-                ContextCompat.getColor(
-                    requireContext()!!,
-                    R.color.blue
-                )
-            ) //设置StepsViewIndicator完成线的颜色
-            .setStepsViewIndicatorUnCompletedLineColor(
-                ContextCompat.getColor(
-                    requireContext()!!,
-                    R.color.blue
-                )
-            ) //设置StepsViewIndicator未完成线的颜色
-            .setStepViewComplectedTextColor(
-                ContextCompat.getColor(
-                    requireContext()!!,
-                    R.color.blue
-                )
-            ) //设置StepsView text完成线的颜色
-            .setStepViewUnComplectedTextColor(
-                ContextCompat.getColor(
-                    requireContext()!!,
-                    R.color.textSecondaryColor
-                )
-            ) //设置StepsView text未完成线的颜色
-            .setStepsViewIndicatorCompleteIcon(
-                ContextCompat.getDrawable(
-                    requireContext()!!,
-                    R.drawable.ic_baseline_done_24
-                )
-            ) //设置StepsViewIndicator CompleteIcon
-            .setStepsViewIndicatorDefaultIcon(
-                ContextCompat.getDrawable(
-                    requireContext()!!,
-                    R.drawable.default_icon
-                )
-            ) //设置StepsViewIndicator DefaultIcon
-            .setStepsViewIndicatorAttentionIcon(
-                ContextCompat.getDrawable(
-                    requireContext()!!,
-                    R.drawable.attention
-                )
-            ) //设置StepsViewIndicator AttentionIcon
 
+        if(arguments !=null)
+        {
+            mUserName = MyOrderDetailsFragmentArgs.fromBundle(requireArguments()).userName
+            mPhone = MyOrderDetailsFragmentArgs.fromBundle(requireArguments()).phone
+            mEmail = MyOrderDetailsFragmentArgs.fromBundle(requireArguments()).email
+            mAddress = MyOrderDetailsFragmentArgs.fromBundle(requireArguments()).address
+            mTotal_amount = MyOrderDetailsFragmentArgs.fromBundle(requireArguments()).totalAmount
+            mQty = MyOrderDetailsFragmentArgs.fromBundle(requireArguments()).qty
+            mPayment_mode = MyOrderDetailsFragmentArgs.fromBundle(requireArguments()).paymentMode
+            mTransationID = MyOrderDetailsFragmentArgs.fromBundle(requireArguments()).transactionId
+            mOrder_Status = MyOrderDetailsFragmentArgs.fromBundle(requireArguments()).orderStatus
+        }
+
+        order_details_user_name.text = mUserName
+        order_details_order_status.text = mOrder_Status
+        order_details_mobile_no.text = mPhone
+        order_details_billing_mail.text = mEmail
+        order_details_billing_address.text = mAddress
+        order_details_total_amount_value.text = mTotal_amount
+        order_details_bottle_qty_value.text = mQty
+        order_details_payment_mode_value.text = mPayment_mode
+        order_details_transaction_id_value.text = mTransationID.toString()
+        order_details_order_status.text = mOrder_Status
     }
+
 
 }

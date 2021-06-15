@@ -1,48 +1,68 @@
 package com.xpertwebtech.coreaqua.ui.ProductDetails
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.icu.util.Calendar
+import android.location.Address
 import android.location.Geocoder
+import android.location.Location
+import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.RadioButton
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
+import androidx.navigation.NavController
+import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import com.bumptech.glide.Glide
-import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.*
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.xpertwebtech.coreaqua.Interface.RecyclerViewClickInterface
 import com.xpertwebtech.coreaqua.R
 import com.xpertwebtech.coreaqua.SharedPrefManager.SharedPrefManager
 import com.xpertwebtech.coreaqua.base.BaseFragment
+import com.xpertwebtech.coreaqua.ui.AddressList.AddressListFragmentArgs
 import com.xpertwebtech.coreaqua.ui.DashBoard.DeshboardAdapter
 import com.xpertwebtech.coreaqua.ui.DashBoard.ProductListData
 import com.xpertwebtech.coreaqua.ui.Wallet.WalletListData
+import kotlinx.android.synthetic.main.fragment_address_list.*
 import kotlinx.android.synthetic.main.fragment_deshboard.*
 import kotlinx.android.synthetic.main.fragment_product_details.*
+import kotlinx.android.synthetic.main.select_current_address_popup.view.*
 import kotlinx.android.synthetic.main.select_location_popup.view.*
 import kotlinx.android.synthetic.main.term_condition_popup.view.*
+import java.io.IOException
 import java.util.*
 
 class ProductDetailsFragment : BaseFragment<ProductDetailsView, ProductDetailsPresenter>(),ProductDetailsView {
+
+    private lateinit var navController: NavController
+    private lateinit var mCurrentAddress: String
     private lateinit var geocoder: Geocoder
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var selected_Address: String
     private lateinit var mDialog: AlertDialog
     private lateinit var mDialog2: AlertDialog
+    private lateinit var mDialog3: AlertDialog
     private lateinit var mDialogBuilder: AlertDialog.Builder
     private lateinit var mDialogBuilder2: AlertDialog.Builder
+    private lateinit var mDialogBuilder3: AlertDialog.Builder
     private lateinit var mProduct_ID:String
     private lateinit var mProduct_Name:String
-    private lateinit var mProduct_price:String
+    private var mProduct_price:String = "null"
     private lateinit var mProduct_code:String
     private lateinit var mProduct_quantity:String
     private lateinit var mProduct_pic_url:String
@@ -54,10 +74,15 @@ class ProductDetailsFragment : BaseFragment<ProductDetailsView, ProductDetailsPr
     private var mYear = 0
     private  var mMonth:Int = 0
     private  var mDay:Int = 0
-    private var mPerItemPrice:Int = 25
+    private var mPerItemPrice:Int =0
     private var ItemCount: Int =1
     private val mPosition_code:Int = 0;
     private var mStartTimeInMiliSeconds:Long = System.currentTimeMillis()
+
+    private lateinit var mFusedLocationClient: FusedLocationProviderClient
+    private lateinit var latitudeTextView: TextView
+    private lateinit var longitTextView: TextView
+    private var PERMISSION_ID = 44
     override fun getContentView(): Int {
         return R.layout.fragment_product_details
     }
@@ -75,9 +100,26 @@ class ProductDetailsFragment : BaseFragment<ProductDetailsView, ProductDetailsPr
 
         sharedPrefmanager = SharedPrefManager.getInstance(requireContext())
         mUser_ID = sharedPrefmanager.user.id.toString()
+        if(arguments !=null) {
+            var qty:String = ProductDetailsFragmentArgs.fromBundle(requireArguments()).qty
+            mCount = qty
+        }
         presenter?.hitGetProductListApi()
         Log.d("OD", "ID$mUser_ID")
         presenter?.hitGetWalletBalanceApi(mUser_ID)
+        navController = Navigation.findNavController(requireView())
+
+
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+
+        // method to get the location
+
+        // method to get the location
+
+
+
+
+
 
 //        if(arguments!=null)
 //        {
@@ -92,7 +134,6 @@ class ProductDetailsFragment : BaseFragment<ProductDetailsView, ProductDetailsPr
         product_details_term_condition.setOnClickListener {
             termConditionPopup()
         }
-        mCount = "1"
         product_details_qty_count.text = mCount
         product_details_amount_details_qty.text = mCount
         if(product_details_qty_count.text.toString() == mCount)
@@ -195,7 +236,7 @@ class ProductDetailsFragment : BaseFragment<ProductDetailsView, ProductDetailsPr
             lateinit var day_type: String
             val quantity:String = product_details_qty_count.text.toString()
 
-            selectAddressPopup()
+            selectAddressPopup(quantity)
 
 //            val selectedId: Int = product_details_delivery_day_btn_group.getCheckedRadioButtonId()
 //            day_type = if(selectedId==-1){
@@ -265,11 +306,15 @@ class ProductDetailsFragment : BaseFragment<ProductDetailsView, ProductDetailsPr
         product_details_product_price.text = "Rs. $mProduct_price"
         product_details_product_quantity.text = "$mProduct_quantity Liters"
         product_details_amount_details_price.text = "$mProduct_price.00"
+        mPerItemPrice = mProduct_price.toInt()
+        val price:Int = mCount.toInt()*mPerItemPrice
+        product_details_total_price.text = price.toString()
+        product_details_amount_details_total_amount.text = "$price.00"
 
     }
 
     private fun getTotalPrice(mainCount: Int) {
-        val price:Int = mainCount*mPerItemPrice
+        val price:Int = mainCount*mProduct_price.toInt()
         product_details_total_price.text = price.toString()
         product_details_amount_details_total_amount.text = "$price.00"
 
@@ -348,12 +393,13 @@ class ProductDetailsFragment : BaseFragment<ProductDetailsView, ProductDetailsPr
         return calendar.timeInMillis
     }
 
-    private fun selectAddressPopup() {
+    private fun selectAddressPopup(qty:String) {
         mDialogBuilder = AlertDialog.Builder(requireContext())
         val li = layoutInflater
         val popupView: View = li.inflate(R.layout.select_location_popup, null)
         mDialogBuilder.setView(popupView)
         mDialog = mDialogBuilder.create()
+        mDialog.setCanceledOnTouchOutside(false)
         mDialog.show()
 
         popupView.select_location_submit_btn.setOnClickListener {
@@ -368,13 +414,18 @@ class ProductDetailsFragment : BaseFragment<ProductDetailsView, ProductDetailsPr
             Log.d("selected_Address",selected_Address)
             if (selected_Address.equals("Current Address"))
             {
-                presenter!!.hitGeoLocationApi("AIzaSyB3h-DQ2T_YnsMo7pIMtjRv42tsxlaAY-o")
+//                presenter!!.hitGeoLocationApi("AIzaSyB3h-DQ2T_YnsMo7pIMtjRv42tsxlaAY-o")
+                getLastLocation()
+                mDialog.dismiss()
+//                CurrentAddressPopup()
                 Snackbar.make(popupView.select_location_radioGroup,"Current Address Selected",Snackbar.LENGTH_LONG).show()
             }
             else if (selected_Address.equals("Saved Address"))
             {
                 mDialog.dismiss()
-                Navigation.findNavController(product_details_amount_details_qty).navigate(R.id.action_orderDetailsFragment_to_addressListFragment)
+                var action: NavDirections = ProductDetailsFragmentDirections.actionOrderDetailsFragmentToAddressListFragment(qty,mProduct_price,"ProductDetailsPage")
+                navController.navigate(action)
+//                Navigation.findNavController(product_details_amount_details_qty).navigate(R.id.action_orderDetailsFragment_to_addressListFragment)
             }
             else
             {
@@ -391,6 +442,55 @@ class ProductDetailsFragment : BaseFragment<ProductDetailsView, ProductDetailsPr
         }
     }
 
+//    private fun CurrentAddressPopup() {
+//        mDialogBuilder3 = AlertDialog.Builder(requireContext())
+//        val li = layoutInflater
+//        val popupView: View = li.inflate(R.layout.select_location_popup, null)
+//        mDialogBuilder3.setView(popupView)
+//        mDialog3 = mDialogBuilder3.create()
+//        mDialog3.setCanceledOnTouchOutside(false)
+//        mDialog3.show()
+//
+//        popupView.select_current_location_submit_btn.setOnClickListener {
+//            var selectedOption: Int = popupView.select_current_current_location_radioGroup!!.checkedRadioButtonId
+//            selected_Address = if(selectedOption==-1){
+//                Log.d("OD", "Please Select Delivery Day ")
+//                "null"
+//            } else{
+//                var selectedBtn: RadioButton = popupView.findViewById(selectedOption)
+//                selectedBtn.text.toString()
+//            }
+//            Log.d("selected_Address",selected_Address)
+//            if (selected_Address.equals("Current Address"))
+//            {
+////                presenter!!.hitGeoLocationApi("AIzaSyB3h-DQ2T_YnsMo7pIMtjRv42tsxlaAY-o")
+//                var address:String = mCurrentAddress
+//                if(address != null)
+//                {
+//                    popupView.select_current_current_location.text = address
+//                }
+//
+//            }
+//            else if (selected_Address.equals("Saved Address"))
+//            {
+//                mDialog.dismiss()
+//                Navigation.findNavController(product_details_amount_details_qty).navigate(R.id.action_orderDetailsFragment_to_addressListFragment)
+//            }
+//            else
+//            {
+//                Snackbar.make(popupView.select_location_radioGroup,"Something went wrong!!",Snackbar.LENGTH_LONG).show()
+//            }
+//        }
+////        mAddClassBtn.setOnClickListener(View.OnClickListener {
+////            mProgressDialog.setMessage("Please Wait...")
+////            mProgressDialog.show()
+////            addClassApi()
+////        })
+//        popupView.select_location_cancel.setOnClickListener {
+//            mDialog.dismiss()
+//        }
+//    }
+
 
     private fun termConditionPopup() {
         mDialogBuilder2 = AlertDialog.Builder(requireContext())
@@ -404,62 +504,220 @@ class ProductDetailsFragment : BaseFragment<ProductDetailsView, ProductDetailsPr
             mDialog2.dismiss()
         }
     }
-    private fun getUserAddress(latitude: Double, longitude: Double) {
+//    private fun getUserAddress(latitude: Double, longitude: Double) {
+//
+//        val addresses: List<android.location.Address>
+//        geocoder = Geocoder(requireContext(), Locale.getDefault())
+//
+//        addresses = geocoder.getFromLocation(latitude, longitude, 1) // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+//
+//
+//        val address: String = addresses[0].getAddressLine(0) // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+//
+//        if(addresses[0]?.getSubLocality()!=null)
+//        {
+//            val socity:String = addresses[0]?.getSubLocality()
+//            deshboard_location_subleclity.text = socity
+//        }
+//        if(addresses[0]?.getFeatureName()!=null)
+//        {
+//            val knownName: String = addresses[0]?.getFeatureName()
+//            var trimData:String = knownName+", "
+//            val separated: List<String> = address.split(trimData)
+//            var demoAddress:String = separated[1];
+//            deshboard_location_full_address.text = demoAddress
+//        }
+////        v
+//
+////        Log.d("location", address)
+////        Log.d("location", socity)
+////        Log.d("location", city)
+////        Log.d("location", state)
+////        Log.d("location", country)
+////        Log.d("location", postalCode)
+////        Log.d("location", knownName)
+//
+//
+//
+//
+//
+//    }
+//    private fun checkLocationPermission() {
+//        val task = fusedLocationProviderClient.lastLocation
+//        if(ActivityCompat.checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
+//            != PackageManager.PERMISSION_GRANTED && ActivityCompat
+//                .checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION)
+//            != PackageManager.PERMISSION_GRANTED){
+//
+//            ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 101)
+//            return
+//        }
+//        task.addOnSuccessListener {
+//            if (it != null)
+//            {
+////                Snackbar.make(dashboard_rc, "${it.latitude} ${it.longitude}", Snackbar.LENGTH_LONG).show()
+//                Log.d("location", "${it.latitude} ${it.longitude}")
+//                getUserAddress(it.latitude, it.longitude)
+//
+//            }
+//        }
+//    }
 
-        val addresses: List<android.location.Address>
-        geocoder = Geocoder(requireContext(), Locale.getDefault())
 
-        addresses = geocoder.getFromLocation(latitude, longitude, 1) // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+    //    -------------------------------------Current Location code--------------------
 
 
-        val address: String = addresses[0].getAddressLine(0) // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
 
-        if(addresses[0]?.getSubLocality()!=null)
-        {
-            val socity:String = addresses[0]?.getSubLocality()
-            deshboard_location_subleclity.text = socity
+    @SuppressLint("MissingPermission")
+    private fun getLastLocation() {
+        // check if permissions are given
+        if (checkPermissions()) {
+
+            // check if location is enabled
+            if (isLocationEnabled()) {
+
+                // getting last
+                // location from
+                // FusedLocationClient
+                // object
+                mFusedLocationClient.getLastLocation()
+                    .addOnCompleteListener(OnCompleteListener<Location?> { task ->
+                        val location = task.result
+                        if (location == null) {
+                            requestNewLocationData()
+                        } else {
+//                            latitudeTextView.setText(location.latitude.toString() + "")
+//                            longitTextView.setText(location.longitude.toString() + "")
+                            try {
+                                getUserAddress(location.latitude, location.longitude)
+                            } catch (e: IOException) {
+                                e.printStackTrace()
+                            }
+                        }
+                    })
+            } else {
+                Snackbar.make(address_list_add_btn, "Please turn on" + " your location...", Snackbar.LENGTH_LONG).show()
+                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                startActivity(intent)
+            }
+        } else {
+            // if permissions aren't available,
+            // request for permissions
+            requestPermissions()
         }
-        if(addresses[0]?.getFeatureName()!=null)
-        {
-            val knownName: String = addresses[0]?.getFeatureName()
-            var trimData:String = knownName+", "
-            val separated: List<String> = address.split(trimData)
-            var demoAddress:String = separated[1];
-            deshboard_location_full_address.text = demoAddress
-        }
-//        v
+    }
 
-//        Log.d("location", address)
-//        Log.d("location", socity)
-//        Log.d("location", city)
-//        Log.d("location", state)
-//        Log.d("location", country)
-//        Log.d("location", postalCode)
-//        Log.d("location", knownName)
+    @SuppressLint("MissingPermission")
+    private fun requestNewLocationData() {
 
+        // Initializing LocationRequest
+        // object with appropriate methods
+        val mLocationRequest = LocationRequest()
+        mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        mLocationRequest.interval = 5
+        mLocationRequest.fastestInterval = 0
+        mLocationRequest.numUpdates = 1
 
-
-
+        // setting LocationRequest
+        // on FusedLocationClient
 
     }
-    private fun checkLocationPermission() {
-        val task = fusedLocationProviderClient.lastLocation
-        if(ActivityCompat.checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_FINE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED && ActivityCompat
-                .checkSelfPermission(requireContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED){
 
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 101)
-            return
+    private val mLocationCallback: LocationCallback = object : LocationCallback() {
+        override fun onLocationResult(locationResult: LocationResult) {
+            val mLastLocation = locationResult.lastLocation
+//            latitudeTextView.setText("Latitude: " + mLastLocation.latitude + "")
+//            longitTextView.setText("Longitude: " + mLastLocation.longitude + "")
         }
-        task.addOnSuccessListener {
-            if (it != null)
-            {
-//                Snackbar.make(dashboard_rc, "${it.latitude} ${it.longitude}", Snackbar.LENGTH_LONG).show()
-                Log.d("location", "${it.latitude} ${it.longitude}")
-                getUserAddress(it.latitude, it.longitude)
+    }
 
+    // method to check for permissions
+    private fun checkPermissions(): Boolean {
+        return ActivityCompat.checkSelfPermission(
+            requireContext(),
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+            requireContext(),
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+
+        // If we want background location
+        // on Android 10.0 and higher,
+        // use:
+        // ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED
+    }
+
+    // method to request for permissions
+    private fun requestPermissions() {
+        ActivityCompat.requestPermissions(
+            requireActivity(), arrayOf(
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ), PERMISSION_ID
+        )
+    }
+
+    // method to check
+// if location is enabled
+    private fun isLocationEnabled(): Boolean {
+//    val locationManager: LocationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE)
+        val locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+            LocationManager.NETWORK_PROVIDER
+        )
+    }
+
+    // If everything is alright then
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String?>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == PERMISSION_ID) {
+            if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getLastLocation()
             }
         }
     }
+
+
+
+    @Throws(IOException::class)
+    private fun getUserAddress(latitude: Double, longitude: Double) {
+        val geocoder: Geocoder
+        val addresses: List<Address>
+        geocoder = Geocoder(requireContext(), Locale.getDefault())
+        addresses = geocoder.getFromLocation(
+            latitude,
+            longitude,
+            1
+        ) // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+        val address =
+            addresses[0].getAddressLine(0) // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+        val city = addresses[0].locality
+        val state = addresses[0].adminArea
+        val country = addresses[0].countryName
+        val postalCode = addresses[0].postalCode
+        val knownName = addresses[0].featureName
+        mCurrentAddress = "  $knownName"
+
+//        try
+//        {
+//
+//        }catch (e: Exception)
+//        {
+//
+//        }
+        Log.d("Address: ", "$address $city $state $country $postalCode $knownName")
+        Snackbar.make(product_details_term_condition,"$address $city $state $country $postalCode $knownName",Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(product_details_term_condition,"Functionality coming soon",Snackbar.LENGTH_LONG).show()
+    }
+    override fun onResume() {
+        super.onResume()
+//        if (checkPermissions()) {
+//            getLastLocation()
+//        }
+    }
+//    -------------------------------------Current Location code--------------------
 }

@@ -74,13 +74,15 @@ class SignInActivity : BaseActivity<SignInView,SignInPresenter>(),SignInView {
     override fun getLogInResponse(response: UserDataClass) {
         if (response.status == 200)
         {
-            Snackbar.make(sign_in_registration_btn, response.msg.toString(), Snackbar.LENGTH_LONG).show()
-            SharedPrefManager.getInstance(applicationContext).userLogin(response.user)
+            Snackbar.make(sign_in_registration_btn, response.message.toString(), Snackbar.LENGTH_LONG).show()
+            if(response.user!=null) {
+                SharedPrefManager.getInstance(applicationContext).userLogin(response.user)
+            }
             intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
         }else if(response.status == 400)
         {
-            Snackbar.make(sign_in_registration_btn, response.msg.toString(), Snackbar.LENGTH_LONG).show()
+            Snackbar.make(sign_in_registration_btn, response.message.toString(), Snackbar.LENGTH_LONG).show()
         }
         else
         {

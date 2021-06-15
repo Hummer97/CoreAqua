@@ -2,12 +2,20 @@ package com.xpertwebtech.coreaqua.api
 
 import com.rns.rnsecomapp.api.Constants
 import com.xpertwebtech.coreaqua.dataModel.UserDataClass
+import com.xpertwebtech.coreaqua.ui.AddressList.AddedAddressData
+import com.xpertwebtech.coreaqua.ui.AddressList.AddressData
+import com.xpertwebtech.coreaqua.ui.AddressList.AddressDeleteResponseData
 import com.xpertwebtech.coreaqua.ui.DashBoard.ProductListData
+import com.xpertwebtech.coreaqua.ui.MyOrderDetails.OrderStatusListingData
+import com.xpertwebtech.coreaqua.ui.MyOrders.OrderListData
 import com.xpertwebtech.coreaqua.ui.My_Plan.UserPlanData
+import com.xpertwebtech.coreaqua.ui.PaykunPayment.BookedOrderResponse
 import com.xpertwebtech.coreaqua.ui.ProductDetails.GeoLocationData
 import com.xpertwebtech.coreaqua.ui.ProductDetails.ProductDetailsResponseData
 import com.xpertwebtech.coreaqua.ui.Signup.*
 import com.xpertwebtech.coreaqua.ui.Wallet.WalletListData
+import com.xpertwebtech.coreaqua.ui.paymentDetails.OrderCountData
+import com.xpertwebtech.coreaqua.ui.paymentDetails.SingleUserAddressData
 import io.reactivex.Observable
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -49,6 +57,39 @@ interface ApiService {
 
     @POST(Constants.Partials.key)
     fun getGeoLocation(@Query("key")key:String):Observable<GeoLocationData>
+
+    @POST(Constants.Partials.User_Registration)
+    fun getUpdatedProfile(@Body params: HashMap<String, Any>):Observable<UserDataClass>
+
+    @POST(Constants.Partials.User_Registration)
+    fun getUpdatedPassword(@Body params: HashMap<String, Any>):Observable<UserDataClass>
+
+    @GET(Constants.Partials.user_saved_address_list)
+    fun getSavedAddressList(@Query("user_id") user_id: String):Observable<AddressData>
+
+    @POST(Constants.Partials.add_edit_address)
+    fun setUserAddress(@Body params: HashMap<String, Any>):Observable<AddedAddressData>
+
+    @GET(Constants.Partials.user_order_listing)
+    fun getUserOrderList(@Query("user_id") user_id: String):Observable<OrderListData>
+
+    @POST(Constants.Partials.saved_address_delete)
+    fun getSavedAddressDeleteResponse(@Query("id") id:String):Observable<AddressDeleteResponseData>
+
+    @POST(Constants.Partials.add_edit_address)
+    fun getUpdatedUserAddress(@Body params: HashMap<String, Any>):Observable<AddedAddressData>
+
+    @GET(Constants.Partials.user_address_details)
+    fun getUserAddressDetails(@Query("id") address_id: String):Observable<SingleUserAddressData>
+
+    @GET(Constants.Partials.user_order_count)
+    fun getUserOrderCount(@Query("user_id") user_id: String):Observable<OrderCountData>
+
+    @POST(Constants.Partials.user_order_booked)
+    fun getUserOrderBooked(@Body params: HashMap<String, Any>):Observable<BookedOrderResponse>
+
+    @GET(Constants.Partials.user_order_status)
+    fun getUserOrderStatus():Observable<OrderStatusListingData>
 }
 
 

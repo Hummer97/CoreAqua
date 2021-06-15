@@ -3,19 +3,15 @@ import com.google.gson.annotations.SerializedName
 
 
 data class UserDataClass(
-    @SerializedName("msg")
-    val msg: String?,
-    @SerializedName("status")
-    val status: Int?,
+    @SerializedName("message")
+    val message: String?,
     @SerializedName("user")
-    val user: User?
+    val user: User?,
+    @SerializedName("status")
+    val status: Int?
 )
 
 data class User(
-    @SerializedName("address")
-    val address: String?,
-    @SerializedName("block")
-    val block: String?,
     @SerializedName("email")
     val email: String?,
     @SerializedName("id")
@@ -25,9 +21,7 @@ data class User(
     @SerializedName("phone")
     val phone: String?,
     @SerializedName("refer_code")
-    val referCode: Any?,
-    @SerializedName("sector")
-    val sector: String?,
+    val referCode: String?,
     @SerializedName("used_refer_code")
     val usedReferCode: Any?,
     @SerializedName("user_type")

@@ -7,9 +7,9 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/nav_plan"
+        android:id="@+id/orderListFragment"
         android:icon="@drawable/ic_baseline_library_add_check_24"
-        android:title="@string/title_Plan" />
+        android:title="@string/title_orderList" />
 
     <item
         android:id="@+id/nav_profile"

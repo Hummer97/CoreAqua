@@ -17,7 +17,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="title_Plan">My Subscription</string>
+    <string name="title_orderList">Order History</string>
     <string name="title_Profile">Profile</string>
     <string name="title_Contact">Contact</string>
 

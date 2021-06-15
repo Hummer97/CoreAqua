@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/orderDetailsFragment">
+    app:startDestination="@id/productFragment">
 
     <fragment
         android:id="@+id/nav_home"
@@ -39,8 +39,8 @@
             android:id="@+id/action_nav_profile_to_profileDetailsFragment"
             app:destination="@id/profileDetailsFragment" />
         <action
-            android:id="@+id/action_nav_profile_to_orderListFragment"
-            app:destination="@id/orderListFragment" />
+            android:id="@+id/action_nav_profile_to_addressListFragment"
+            app:destination="@id/addressListFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderDetailsFragment"
@@ -53,6 +53,12 @@
         <action
             android:id="@+id/action_orderDetailsFragment_to_walletHistoryFragment3"
             app:destination="@id/walletHistoryFragment3" />
+        <action
+            android:id="@+id/action_orderDetailsFragment_to_addressListFragment2"
+            app:destination="@id/addressListFragment" />
+        <argument
+            android:name="qty"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/privacyPolicyFragment"
@@ -92,10 +98,78 @@
         android:id="@+id/myOrderDetailsFragment"
         android:name="com.xpertwebtech.coreaqua.ui.MyOrderDetails.MyOrderDetailsFragment"
         android:label="fragment_my_order_details"
-        tools:layout="@layout/fragment_my_order_details" />
+        tools:layout="@layout/fragment_my_order_details" >
+        <argument
+            android:name="user_name"
+            app:argType="string" />
+        <argument
+            android:name="phone"
+            app:argType="string" />
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <argument
+            android:name="address"
+            app:argType="string" />
+        <argument
+            android:name="total_amount"
+            app:argType="string" />
+        <argument
+            android:name="qty"
+            app:argType="string" />
+        <argument
+            android:name="payment_mode"
+            app:argType="string" />
+        <argument
+            android:name="transaction_id"
+            app:argType="string" />
+        <argument
+            android:name="order_status"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/addressListFragment"
         android:name="com.xpertwebtech.coreaqua.ui.AddressList.AddressListFragment"
         android:label="fragment_address_list"
-        tools:layout="@layout/fragment_address_list" />
+        tools:layout="@layout/fragment_address_list" >
+        <argument
+            android:name="qty"
+            app:argType="string" />
+        <argument
+            android:name="price"
+            app:argType="string" />
+        <argument
+            android:name="page_call_address"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_addressListFragment_to_paymentDetailsFragment"
+            app:destination="@id/paymentDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentDetailsFragment"
+        android:name="com.xpertwebtech.coreaqua.ui.paymentDetails.PaymentDetailsFragment"
+        android:label="fragment_payment_details"
+        tools:layout="@layout/fragment_payment_details" >
+        <argument
+            android:name="address_id"
+            app:argType="string" />
+        <argument
+            android:name="qty"
+            app:argType="string" />
+        <argument
+            android:name="product_price"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_paymentDetailsFragment_to_orderListFragment"
+            app:destination="@id/orderListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productFragment"
+        android:name="com.xpertwebtech.coreaqua.ui.Product.ProductFragment"
+        android:label="fragment_product"
+        tools:layout="@layout/fragment_product" >
+        <action
+            android:id="@+id/action_productFragment_to_orderDetailsFragment"
+            app:destination="@id/orderDetailsFragment" />
+    </fragment>
 </navigation>

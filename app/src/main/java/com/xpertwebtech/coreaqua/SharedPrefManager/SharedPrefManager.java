@@ -14,9 +14,6 @@ public class SharedPrefManager {
     private static final String KEY_MAIL = "keymail";
     private static final String KEY_USER_TYPE = "keyusertype";
     private static final String KEY_PHONE_NO = "keyphoneno";
-    private static final String KEY_ADDRESS = "keyaddress";
-    private static final String KEY_BLOCK = "keyblock";
-    private static final String KEY_SECTOR = "keysector";
     private static final String KEY_REFER_CODE = "keyrefercode";
     private static final String KEY_USER_REFER_CODE = "keyuserrefercode";
 //    private static final String KEY_POST = "post";
@@ -39,17 +36,13 @@ public class SharedPrefManager {
         SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putString(KEY_USERNAME, user.getName());
-        editor.putString(KEY_BLOCK, user.getBlock());
-        editor.putString(KEY_PHONE_NO, user.getPhone());
         editor.putString(KEY_MAIL,user.getEmail());
-        editor.putString(KEY_USER_TYPE, user.getUserType());
-        editor.putString(KEY_ADDRESS, user.getAddress());
-        editor.putString(KEY_SECTOR, user.getSector());
-        editor.putString(KEY_REFER_CODE, (user.getReferCode() != null)?user.getReferCode().toString(): "null");
+        editor.putInt(KEY_ID, user.getId());
+        editor.putString(KEY_USERNAME, user.getName());
+        editor.putString(KEY_PHONE_NO, user.getPhone());
+        editor.putString(KEY_REFER_CODE, (user.getReferCode() != null)?user.getReferCode(): "null");
         editor.putString(KEY_USER_REFER_CODE, (user.getUsedReferCode() != null)?user.getUsedReferCode().toString():"null");
         editor.putString(KEY_USER_TYPE, user.getUserType());
-        editor.putInt(KEY_ID, user.getId());
         editor.apply();
     }
 
@@ -63,14 +56,11 @@ public class SharedPrefManager {
     public User getUser() {
         SharedPreferences sharedPreferences = ctx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return new User(
-                sharedPreferences.getString(KEY_ADDRESS, null),
-                sharedPreferences.getString(KEY_BLOCK, null),
                 sharedPreferences.getString(KEY_MAIL, null),
                 sharedPreferences.getInt(KEY_ID, 0),
                 sharedPreferences.getString(KEY_USERNAME, null),
                 sharedPreferences.getString(KEY_PHONE_NO, null),
                 sharedPreferences.getString(KEY_REFER_CODE, ""),
-                sharedPreferences.getString(KEY_SECTOR, null),
                 sharedPreferences.getString(KEY_USER_REFER_CODE, ""),
                 sharedPreferences.getString(KEY_USER_TYPE, null));
     }

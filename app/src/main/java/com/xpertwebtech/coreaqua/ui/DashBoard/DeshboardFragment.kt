@@ -30,9 +30,9 @@ class DeshboardFragment : BaseFragment<DeshboardView, DeshboardPresenter>(),Desh
 //    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var navController: NavController
     private lateinit var sharedPrefManager: SharedPrefManager
-    private lateinit var mAddress:String
-    private lateinit var mBlock:String
-    private lateinit var mSector:String
+//    private lateinit var mAddress:String
+//    private lateinit var mBlock:String
+//    private lateinit var mSector:String
 
     override fun getContentView(): Int {
         return R.layout.fragment_deshboard
@@ -44,12 +44,12 @@ class DeshboardFragment : BaseFragment<DeshboardView, DeshboardPresenter>(),Desh
 
     override fun onViewReady(savedInstanceState: Bundle?) {
         sharedPrefManager = SharedPrefManager.getInstance(requireContext())
-        mAddress = sharedPrefManager.user.address.toString()
-        mBlock = sharedPrefManager.user.block.toString()
-        mSector = sharedPrefManager.user.sector.toString()
+//        mAddress = sharedPrefManager.user.address.toString()
+//        mBlock = sharedPrefManager.user.block.toString()
+//        mSector = sharedPrefManager.user.sector.toString()
 
-        deshboard_location_subleclity.text = mBlock
-        deshboard_location_full_address.text = mAddress+", "+mBlock+", "+mSector
+//        deshboard_location_subleclity.text = mBlock
+//        deshboard_location_full_address.text = mAddress+", "+mBlock+", "+mSector
 
 
         navController = Navigation.findNavController(requireView())
@@ -128,44 +128,44 @@ class DeshboardFragment : BaseFragment<DeshboardView, DeshboardPresenter>(),Desh
 
 
 
-//    private fun getUserAddress(latitude: Double, longitude: Double) {
-//
-//        val addresses: List<android.location.Address>
-//        geocoder = Geocoder(requireContext(), Locale.getDefault())
-//
-//        addresses = geocoder.getFromLocation(latitude, longitude, 1) // Here 1 represent max location result to returned, by documents it recommended 1 to 5
-//
-//
-//        val address: String = addresses[0].getAddressLine(0) // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-//
-//        if(addresses[0]?.getSubLocality()!=null)
-//        {
-//            val socity:String = addresses[0]?.getSubLocality()
-//            deshboard_location_subleclity.text = socity
-//        }
-//        if(addresses[0]?.getFeatureName()!=null)
-//        {
-//            val knownName: String = addresses[0]?.getFeatureName()
-//            var trimData:String = knownName+", "
-//            val separated: List<String> = address.split(trimData)
-//            var demoAddress:String = separated[1];
-//            deshboard_location_full_address.text = demoAddress
-//        }
-////        v
-//
-////        Log.d("location", address)
-////        Log.d("location", socity)
-////        Log.d("location", city)
-////        Log.d("location", state)
-////        Log.d("location", country)
-////        Log.d("location", postalCode)
-////        Log.d("location", knownName)
-//
-//
-//
-//
-//
-//    }
+    private fun getUserAddress(latitude: Double, longitude: Double) {
+
+        val addresses: List<android.location.Address>
+        geocoder = Geocoder(requireContext(), Locale.getDefault())
+
+        addresses = geocoder.getFromLocation(latitude, longitude, 1) // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+
+
+        val address: String = addresses[0].getAddressLine(0) // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
+
+        if(addresses[0]?.getSubLocality()!=null)
+        {
+            val socity:String = addresses[0]?.getSubLocality()
+            deshboard_location_subleclity.text = socity
+        }
+        if(addresses[0]?.getFeatureName()!=null)
+        {
+            val knownName: String = addresses[0]?.getFeatureName()
+            var trimData:String = knownName+", "
+            val separated: List<String> = address.split(trimData)
+            var demoAddress:String = separated[1];
+            deshboard_location_full_address.text = demoAddress
+        }
+//        v
+
+//        Log.d("location", address)
+//        Log.d("location", socity)
+//        Log.d("location", city)
+//        Log.d("location", state)
+//        Log.d("location", country)
+//        Log.d("location", postalCode)
+//        Log.d("location", knownName)
+
+
+
+
+
+    }
 
 //    override fun onResume() {
 //        super.onResume()

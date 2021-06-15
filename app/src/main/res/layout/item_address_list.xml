@@ -12,17 +12,17 @@
         android:id="@+id/item_address_list_address"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/amiko"
         android:lineSpacingExtra="4sp"
         android:text="Akshya Nagar 1st Block 1st Cross, Rammurthy nagar, Bangalore-560016"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/item_address_list_title"
-        app:layout_constraintTop_toBottomOf="@+id/item_address_list_title" />
+        app:layout_constraintEnd_toEndOf="@+id/item_address_list_mobile_no"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/item_address_list_mobile_no"
+        app:layout_constraintTop_toBottomOf="@+id/item_address_list_mobile_no" />
 
     <TextView
         android:id="@+id/item_address_list_title"
@@ -31,10 +31,10 @@
         android:text="User Name"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/item_address_list_address"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/item_address_list_mobile_no"
+        app:layout_constraintEnd_toStartOf="@+id/item_address_list_curd_btn"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/item_address_list_tick"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
@@ -42,16 +42,13 @@
         android:id="@+id/item_address_list_tick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:background="@drawable/circle_bg"
         android:backgroundTint="@color/blue"
         android:padding="2dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/item_address_list_title"
-        app:layout_constraintEnd_toStartOf="@+id/item_address_list_title"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/item_address_list_address"
+        app:layout_constraintEnd_toEndOf="@+id/item_address_list_curd_btn"
+        app:layout_constraintStart_toStartOf="@+id/item_address_list_curd_btn"
         app:layout_constraintTop_toTopOf="@+id/item_address_list_title"
         app:layout_constraintVertical_bias="0.61">
 
@@ -64,6 +61,68 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_done_24" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/item_address_list_mobile_no"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/item_address_list_address"
+        app:layout_constraintEnd_toEndOf="@+id/item_address_list_title"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/item_address_list_title"
+        app:layout_constraintTop_toBottomOf="@+id/item_address_list_title" />
+
+    <ImageView
+        android:id="@+id/item_address_list_curd_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/item_address_list_title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_more_vert_24" />
+
+    <LinearLayout
+        android:id="@+id/item_address_list_curd_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/side_nav_bar"
+        android:backgroundTint="@color/white"
+        android:elevation="10dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/item_address_list_curd_btn"
+        app:layout_constraintTop_toBottomOf="@+id/item_address_list_curd_btn">
+
+        <TextView
+            android:id="@+id/item_address_list_edit_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="7dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="15dp"
+            android:text="Edit"
+            android:textAlignment="viewStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/item_address_list_delete_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="7dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="20dp"
+            android:text="Remove"
+            android:textAlignment="viewStart"
+            android:textSize="14sp" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -212,7 +212,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@drawable/rectangle_bg"
-            android:text="Sing Up"
+            android:text="Sign Up"
             android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="@+id/sign_up_isReferCode_exist"
             app:layout_constraintHorizontal_bias="0.0"

@@ -1,10 +1,8 @@
 package com.xpertwebtech.coreaqua.ui.Profile
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import com.xpertwebtech.coreaqua.R
 import com.xpertwebtech.coreaqua.SharedPrefManager.SharedPrefManager
@@ -16,6 +14,7 @@ class ProfileFragment : BaseFragment<ProfileView,ProfilePresenter>(),ProfileView
     private lateinit var sharedPrefManager: SharedPrefManager
     private lateinit var mUserName:String
     private lateinit var mUserID:String
+    private lateinit var  navController: NavController
     override fun getContentView(): Int {
         return R.layout.fragment_profile
     }
@@ -28,6 +27,8 @@ class ProfileFragment : BaseFragment<ProfileView,ProfilePresenter>(),ProfileView
         sharedPrefManager  = SharedPrefManager.getInstance(requireContext())
         mUserName = sharedPrefManager.user.name.toString()
         mUserID = sharedPrefManager.user.id.toString()
+        navController = Navigation.findNavController(requireView())
+
         profile_user_name.text = mUserName
         presenter?.hitWalletBalanceResponseApi(mUserID)
         profile_wallet.setOnClickListener {
@@ -45,8 +46,11 @@ class ProfileFragment : BaseFragment<ProfileView,ProfilePresenter>(),ProfileView
         profile_edit_profile_btn.setOnClickListener {
             Navigation.findNavController(profile_wallet).navigate(R.id.action_nav_profile_to_profileDetailsFragment)
         }
-        profile_my_order.setOnClickListener {
-            Navigation.findNavController(profile_my_order).navigate(R.id.action_nav_profile_to_orderListFragment)
+        profile_save_address.setOnClickListener {
+            val action: NavDirections = ProfileFragmentDirections.actionNavProfileToAddressListFragment("1","1","profilePage")
+            navController.navigate(action)
+
+//            Navigation.findNavController(profile_save_address).navigate(R.id.action_nav_profile_to_addressListFragment)
         }
 
     }
